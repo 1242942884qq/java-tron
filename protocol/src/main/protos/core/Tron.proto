@@ -1,42 +1,7 @@
-syntax = "proto3";
 
-import "google/protobuf/any.proto";
-import "core/Discover.proto";
-import "core/contract/common.proto";
-
-package protocol;
-
-
-option java_package = "org.tron.protos"; //Specify the name of the package that generated the Java file
-option java_outer_classname = "Protocol"; //Specify the class name of the generated Java file
-option go_package = "github.com/tronprotocol/grpc-gateway/core";
-
-enum AccountType {
-  Normal = 0;
-  AssetIssue = 1;
-  Contract = 2;
-}
-
-// AccountId, (name, address) use name, (null, address) use address, (name, null) use name,
-message AccountId {
-  bytes name = 1;
-  bytes address = 2;
-}
-
-// vote message
-message Vote {
-  // the super rep address
-  bytes vote_address = 1;
-  // the vote num to this super rep.
-  int64 vote_count = 2;
-}
-
-// Proposal
-message Proposal {
-  int64 proposal_id = 1;
-  bytes proposer_address = 2;
-  map<int64, int64> parameters = 3;
-  int64 expiration_time = 4;
+  bytes vote
+  int64 proposal_id = 
+  int64 expira
   int64 create_time = 5;
   repeated bytes approvals = 6;
   enum State {
@@ -576,10 +541,7 @@ message DynamicProperties {
 }
 
 enum ReasonCode {
-  REQUESTED = 0x00;
-  BAD_PROTOCOL = 0x02;
-  TOO_MANY_PEERS = 0x04;
-  DUPLICATE_PEER = 0x05;
+  REQUESTED = 0x00
   INCOMPATIBLE_PROTOCOL = 0x06;
   RANDOM_ELIMINATION = 0x07;
   PEER_QUITING = 0x08;
@@ -875,7 +837,7 @@ message PBFTMessage {
     bytes data = 5;
   }
   Raw raw_data = 1;
-  bytes signature = 2;
+  bytes signature = 1;
 }
 
 message PBFTCommitResult {
